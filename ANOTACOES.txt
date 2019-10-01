@@ -1,0 +1,176 @@
+
+
+$query = mysql_query($busca, $db_alpha);
+
+
+<div class="row-fluid">
+                	<div id="container" style="min-width: 310px; height: 400px; width: 100%; margin: 0 auto"></div>
+					<script type="text/javascript">
+					Highcharts.chart('container', {
+						chart: {
+							type: 'column'
+						},
+						title: {
+							text: 'Top 10 escolas com mais enquetes publicadas'
+						},
+						subtitle: {
+							text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+						},
+						xAxis: {
+							type: 'category',
+							labels: {
+								rotation: -45,
+								style: {
+									fontSize: '13px',
+									fontFamily: 'Verdana, sans-serif'
+								}
+							}
+						},
+						yAxis: {
+							min: 0,
+							title: {
+								text: 'Population (millions)'
+							}
+						},
+						legend: {
+							enabled: false
+						},
+						tooltip: {
+							pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
+						},
+						series: [{
+							name: 'Population',
+							data: [
+								/*
+								['Shanghai', 23.7],
+								['Lagos', 16.1],
+								['Istanbul', 14.2],
+								['Karachi', 14.0],
+								['Mumbai', 12.5],
+								['Moscow', 12.1],
+								['São Paulo', 11.8],
+								['Beijing', 11.7],
+								['Guangzhou', 11.1],
+								['Delhi', 11.1],
+								['Shenzhen', 10.5],
+								['Seoul', 10.4],
+								['Jakarta', 10.0],
+								['Kinshasa', 9.3],
+								['Tianjin', 9.3],
+								['Tokyo', 9.0],
+								['Cairo', 8.9],
+								['Dhaka', 8.9],
+								['Mexico City', 8.9],
+								['Lima', 8.9]
+								*/
+								<?php echo $valores_hichart; ?>
+							],
+							dataLabels: {
+								enabled: true,
+								rotation: -90,
+								color: '#FFFFFF',
+								align: 'right',
+								format: '{point.y:.1f}', // one decimal
+								y: 10, // 10 pixels down from the top
+								style: {
+									fontSize: '13px',
+									fontFamily: 'Verdana, sans-serif'
+								}
+							}
+						}]
+					});
+					</script>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+highcharts-4pv0u2c-2
+
+highcharts-4pv0u2c-0
+
+
+
+SELECT p.pergunta, count(r.id) as total_respostas
+FROM cad_enquete_resposta r
+INNER JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta
+group by p.pergunta
+order by total_respostas desc
+LIMIT 0, 10
+
+
+
+
+SELECT p.pergunta, count(r.id) as total_respostas
+FROM cad_enquete_resposta r
+INNER JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta
+INNER JOIN CAD_enquete e ON e.id = p.id_enquete
+WHERE e.unidade = 6
+GROUP BY p.pergunta
+ORDER BY total_respostas DESC
+LIMIT 0, 10
+
+
+
+
+SELECT p.pergunta, count(rc.id) as total_respostas
+FROM cad_enquete_respostacliente rc
+RIGHT JOIN CAD_enquete_resposta r ON r.id = rc.id_resposta
+RIGHT JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta
+RIGHT JOIN CAD_enquete e ON e.id = p.id_enquete
+WHERE e.unidade = 32
+GROUP BY p.pergunta
+ORDER BY total_respostas DESC
+LIMIT 0, 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
