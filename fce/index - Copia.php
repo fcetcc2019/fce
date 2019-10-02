@@ -11,9 +11,11 @@
  
  		<script type="text/javascript" src="../jquery-ui-1.9.0.custom/js/jquery-1.8.2.js"></script>
         <!-- TWITTER BOOTSTRAP JS -->
+        <script src="../highcharts-6.0.4/code/highcharts.js"></script>
+		<script src="../highcharts-6.0.4/code/modules/exporting.js"></script>
         <script src="../bootstrap/js/bootstrap.min.js"></script>
         <!--<script src="../bootstrap/ckeditor/ckeditor.js"></script>-->
-        <script src="scripts.js"></script>
+        <script src="js/scripts.js"></script>
         
         <style>
         .filtro {
@@ -50,40 +52,31 @@
 			color: #039;
 			text-decoration: underline;
 		}
+		.barra-grafico {
+			position: relative;
+			float: left;
+			background-color: #aaa;
+			height: 100%;
+			width: 10%;
+			bottom: -100%;
+			margin-left: 2%;
+			margin-right: 2%;
+		}
+		.barra-grafico:hover {
+			cursor: pointer;
+			box-shadow: 0 0 6px #403f3f;
+		}
         </style>
  
     </head>
     <body>
     <?php
-	//ini_set('error_reporting',E_ALL);
+	ini_set('error_reporting',E_ALL);
 	//include("../connection.php");
 	include("../connection_aries.php");
 	include("../connection_alpha_homologacao.php");
-	
-	//$usuario = trim(strtoupper(substr($_SERVER["AUTH_USER"],8,100)));
-	$usuario = 'DJUNIOR';
-	
-	mysql_select_db("Siap", $db_alpha);
-	
-	$sql20 = "SELECT * FROM stUsuario where IdUsuario = '".$usuario."'";
-
-	//$qsql20 = mysql_query($sql20, $db2);
-	$qsql20 = mysql_query($sql20, $db_alpha);
-	//echo $db2;
-	if($res0 = mysql_fetch_assoc($qsql20)){
-		$unidade = trim($res0['IdUO']);
-		$email = trim($res0['email']);
-		$nomeUsusario = trim($res0['NOME']);
-	}
-	
-	//$unidade = "6";
-	$unidade = trim($unidade);
-	
-	if(is_numeric($unidade)) {
-		header("Location:index_unidade.php");
-	}
-
-	mysql_select_db("PortalSenacRS", $db_alpha);
+		
+	//mysql_select_db("PortalSenacRS", $db_alpha);
 	
 	if(!isset($_GET['ativoInativo'])) {
 		$_GET['ativoInativo'] = 'ativas'; 
@@ -93,19 +86,27 @@
         <!-- CLASSE QUE DEFINE O CONTAINER COMO FLUIDO (100%) -->
         <div class="container-fluid">
             <!-- CLASSE PARA DEFINIR UMA LINHA -->
-            <ul class="nav nav-pills">
-            	<li class="active">
-                	<a href="../sistema_enquetes/index.php">Relatórios</a>
-            	</li>
-            </ul>
-            <h1>
-            	Enquetes
-                <small>Listagem</small>
-            </h1>
-            <hr>
             <div class="row-fluid">
-                <!-- COLUNA OCUPANDO 10 ESPAÇOS NO GRID -->
-                <div class="span12">
+                <ul class="nav nav-tabs">
+                    <li id="enquetes" class="aba active">
+                        <a href="javascript:">Enquetes</a>
+                    </li>
+                    <li id="relatorios" class="aba">
+                        <a href="graficos.php">Relatórios</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="row-fluid secoes enquetes">
+            	<div class="row-fluid">
+                	<h1>
+                        Enquetes
+                        <small>Listagem</small>
+                    </h1>
+                    <hr>
+                </div>
+                <!-- COLUNA OCUPANDO 12 ESPAÇOS NO GRID -->
+                <div class="row-fluid">
                     <div class="row-fluid">
                         <form class="form-inline" action="index.php">
                         	<div class="span2 bt-insere-enquete">
@@ -269,6 +270,7 @@
                     
                 </div>
             </div>
+            
 		</div>
         
         <div class="container-fluid">
@@ -286,14 +288,18 @@
                                 <span id="msg-cadastraproduto"></span>
                             </div>
                             <div class="row-fluid">
-                                <div class="span12 pergunta"></div>
-                                <div class="respostas"></div>
+                                <!--<div class="span12 pergunta"></div>
+                                <div class="respostas"></div>-->
+                                <div class="row-fluid pergunta"></div>
+                                <div class="row-fluid respostas"></div>
+                                <div class="row-fluid extrato_respostas"></div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                            <button type="button" id="bt-publicaEnquete" class="bt-publicaEnquete btn btn-primary span2" id-enquete="" disabled>Publicar <i class="icone-publicar icon-edit"></i></button>
-                            <button type="button" id="bt-naoPublicaEnquete" class="bt-naoPublicaEnquete btn btn-danger span2" id-enquete="" disabled>Não publicar <i class="icone-publicar icon-edit"></i></button>
+                            <!--<button type="button" id="bt-publicaEnquete" class="bt-publicaEnquete btn btn-primary span2" id-enquete="" disabled>Publicar <i class="icone-publicar icon-edit"></i></button>
+                            <button type="button" id="bt-naoPublicaEnquete" class="bt-naoPublicaEnquete btn btn-danger span2" id-enquete="" disabled>Não publicar <i class="icone-publicar icon-edit"></i></button>-->
+                            <button type="button" id="bt-alteraEnquete" class="bt-alteraEnquete btn btn-primary span2" id-enquete="">Alterar enquete <i class="icone-publicar icon-edit"></i></button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -327,6 +333,39 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                             <button type="button" id="bt-salvaJustificativa" class="bt-salvaJustificativa btn btn-primary span2" id-enquete="">Salvar <i class="icone-publicar icon-edit"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+        </div>
+        
+        <div class="container-fluid">
+            <!--<div class="modal fade modal-enquete" id="modal-enquete" style="width:850px; margin-left:-425px; display:none;">-->
+            <div class="modal fade modal-enquete-altera" id="modal-enquete-altera" style="display:none; width:610px; margin-left:-305px;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Alterar enquete</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div id="alert-cadastroproduto" style="display:none">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <span id="msg-cadastraproduto"></span>
+                            </div>
+                            <div class="row-fluid campos">
+                                <!--<div class="span12">Pergunta:</div>
+                                <div class="span12">
+                                	<textarea name="justificativa" id="justificativa" style="width:93%; height:100px;"></textarea>
+                                </div>-->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                            <button type="button" id="bt-altera-enquete" class="bt-altera-enquete btn btn-primary span2" id-enquete="">Salvar <i class="icone-publicar icon-edit"></i></button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
