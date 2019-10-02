@@ -157,7 +157,7 @@
                                         
                                         
                                         $unidades = "SELECT IdUO, Nome FROM INF_unidades WHERE AtivoSite = 1 ORDER BY Nome";
-                                        $q = mysqli_query($unidades, $db_alpha);
+                                        $q = mysqli_query($db_alpha, $unidades);
                                         while($r = mysqli_fetch_assoc($q)) {
                                             //if($r['IdUO'] == $unidade) {
                                             if($r['IdUO'] == $_GET['unidadeBusca']) {
