@@ -71,7 +71,7 @@
     </head>
     <body>
     <?php
-	//ini_set('error_reporting',E_ALL);
+	ini_set('error_reporting',E_ALL);
 	//include("../connection.php");
 	include("../connection_aries.php");
 	include("../connection_alpha_homologacao.php");
