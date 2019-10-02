@@ -6,7 +6,8 @@ $username = $url["user"];
 $password = $url["pass"];
 $db = substr($url["path"], 1);
 
-$conn = new mysqli($server, $username, $password, $db);
+$db_alpha = mysql_connect($server, $username, $password);//, $db);
+mysql_select_db($db, $db_alpha) or die ("Erro!");
 
 echo $server.'\n';
 echo $username.'\n';
