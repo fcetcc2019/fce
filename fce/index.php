@@ -72,8 +72,15 @@
     <body>
     <?php
 	ini_set('error_reporting',E_ALL);
+	//include("../connection.php");
+	//include("../connection_aries.php");
+	include("../connection_alpha_homologacao.php");
+		
+	//mysql_select_db("PortalSenacRS", $db_alpha);
 	
-	echo 'asfsafsa';
+	/*if(!isset($_GET['ativoInativo'])) {
+		$_GET['ativoInativo'] = 'ativas'; 
+	}*/
 	
 	?>
      
