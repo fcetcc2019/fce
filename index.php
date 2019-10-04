@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="pt-BR">
+<html lang="en-US">
     <head>
         <meta charset="iso-8859-1">
         <meta name="viewport" content="width=device-width, user-scalable=no">
