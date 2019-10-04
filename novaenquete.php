@@ -112,6 +112,9 @@
     
     <?php
 	ini_set('error_reporting',E_ALL);
+
+    die("Aqui");
+
 	//include("../connection.php");
 	include("../connection_alpha_homologacao.php");
 	
