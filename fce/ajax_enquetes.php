@@ -11,7 +11,7 @@ if($_POST['acao']=="buscar"){
 	//$sql = "SELECT e.id, e.titulo, p.pergunta, r.resposta, r.id_pergunta, e.publicado FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta INNER JOIN CAD_enquete e ON e.id = p.id_enquete WHERE e.id = '".$id_enquete."'";
 	$sql = "SELECT e.id, e.titulo, p.pergunta, r.resposta, r.id_pergunta, r.id id_resposta, e.publicado FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta INNER JOIN CAD_enquete e ON e.id = p.id_enquete WHERE e.id = '".$id_enquete."'";
 	
-	$query = mysql_query($sql, $db_alpha);
+	//$query = mysqli_query($db_alpha, $sql);
 	
 	while($res = mysql_fetch_assoc($query)) {
 		$res['id'] = utf8_encode($res['id']);
@@ -47,7 +47,7 @@ if($_POST['acao']=="verificaEnquetesAtivas"){
 	//$sql = "SELECT e.id, e.titulo, p.pergunta, r.resposta, r.id_pergunta, e.publicado FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta INNER JOIN CAD_enquete e ON e.id = p.id_enquete WHERE e.id = '".$id_enquete."'";
 	$sql = "SELECT * FROM CAD_enquete WHERE unidade = ".$strUnidade." ".$strBalcao." AND ativo = 1";
 	//echo json_encode($sql);
-	$query = mysql_query($sql, $db_alpha);
+	$query = mysqli_query($db_alpha, $sql);
 	
 	$total = 0;
 	while($res = mysql_fetch_assoc($query)) {
@@ -298,7 +298,7 @@ if($_POST['acao']=="naopublicar"){
 
 if($_POST['acao'] == 'busca_balcao') {
 	$sql = "SELECT cod, Titulo FROM INF_balcoes WHERE codigounidade = '".$_POST['unidade']."' ORDER BY Titulo ASC";
-	$query = mysql_query($sql, $db_alpha);
+	$query = mysqli_query($db_alpha, $sql);
 	echo '<option value="">Selecione...</option>';
 	while($res = mysql_fetch_assoc($query)) {
 		echo '<option value="'.trim(utf8_encode($res['cod'])).'">'.trim(utf8_encode($res['Titulo'])).'</option>';
@@ -324,7 +324,7 @@ if($_POST['acao']=="carrega_grafico"){
 	$sql = "SELECT p.pergunta, count(rc.id) as total_respostas FROM cad_enquete_respostacliente rc RIGHT JOIN CAD_enquete_resposta r ON r.id = rc.id_resposta RIGHT JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta RIGHT JOIN CAD_enquete e ON e.id = p.id_enquete WHERE e.unidade = ".$strUnidade." GROUP BY p.pergunta ORDER BY total_respostas DESC LIMIT 0, 10";	
 	
 	//echo json_encode($sql);
-	$query = mysql_query($sql, $db_alpha);
+	$query = mysqli_query($db_alpha, $sql);
 	
 	$total = 0;
 	while($res = mysql_fetch_assoc($query)) {
@@ -396,7 +396,7 @@ if($_POST['acao']=="carrega_grafico2"){
 	$sql = "SELECT p.pergunta, count(rc.id) as total_respostas FROM cad_enquete_respostacliente rc RIGHT JOIN CAD_enquete_resposta r ON r.id = rc.id_resposta RIGHT JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta RIGHT JOIN CAD_enquete e ON e.id = p.id_enquete ".$where." GROUP BY p.pergunta ORDER BY total_respostas DESC LIMIT 0, 10";
 	
 	//echo json_encode($sql);
-	$query = mysql_query($sql, $db_alpha);
+	$query = mysqli_query($db_alpha, $sql);
 	
 	$total = 0;
 	$totais_somados = 0;

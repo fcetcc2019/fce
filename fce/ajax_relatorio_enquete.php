@@ -12,7 +12,7 @@ if($_POST['acao']=="buscar"){
 	//$sql = "SELECT IdUO, Nome FROM INF_unidades WHERE (AtivoSite = 1) ORDER BY Nome";
 	$sql = "SELECT e.id, e.titulo, p.pergunta, r.resposta, r.id_pergunta, e.publicado FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta INNER JOIN CAD_enquete e ON e.id = p.id_enquete WHERE e.id = '".$id_enquete."'";
 	
-	$query = mysql_query($sql, $db_alpha);
+	$query = mysqli_query($db_alpha, $sql);
 	
 	while($res = mysql_fetch_assoc($query)) {
 		$res['id'] = utf8_encode($res['id']);

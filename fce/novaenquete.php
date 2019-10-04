@@ -172,7 +172,7 @@
                                     <option>Selecione...</option>
                                     <?php
                                     $sql = "SELECT IdUO, Nome FROM INF_unidades WHERE AtivoSite = 1 ORDER BY Nome";
-                                    $query = mysql_query($sql, $db_alpha);
+                                    $query = mysqli_query($db_alpha, $sql);
                                     while($res = mysql_fetch_assoc($query)) {
                                         echo '<option value="'.$res['IdUO'].'">'.$res['Nome'].'</option>';
                                     }
@@ -194,7 +194,7 @@
                                     <?php
                                     /*
 									$sql = "SELECT IdUO, Nome FROM INF_unidades WHERE AtivoSite = 1 ORDER BY Nome";
-                                    $query = mysql_query($sql, $db_alpha);
+                                    $query = mysqli_query($db_alpha, $sql);
                                     while($res = mysql_fetch_assoc($query)) {
                                         echo '<option value="'.$res['IdUO'].'">'.$res['Nome'].'</option>';
                                     }
