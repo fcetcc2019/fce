@@ -73,7 +73,7 @@
     <?php
 	ini_set('error_reporting',E_ALL);
 	//include("../connection.php");
-	//include("../connection_aries.php");
+	include("../connection_aries.php");
 	include("../connection_alpha_homologacao.php");
 		
 	//mysqli_select_db("PortalSenacRS", $db_alpha);
@@ -197,7 +197,7 @@
 						$busca = "SELECT id, titulo, unidade, (SELECT u.Nome FROM INF_unidades u WHERE u.IdUO = unidade) as nomeunidade, balcao, (SELECT b.Titulo FROM INF_balcoes b WHERE b.cod = balcao) as nomebalcao, publicado, ativo FROM CAD_enquete ".$where." ORDER BY id DESC";
 						
 						//echo $busca;
-						$query = mysqli_query($db_alpha, $busca);
+						$query = mysqli_query($busca, $db_alpha);
 						echo '<table class="table table-hover">';
 						//echo '<tr class="navbar-inner" style="height:45px;">';
 						echo '<thead>';
@@ -246,7 +246,7 @@
 							/*echo '<script>alert("'.$res['publicado'].'")</script>';*/
 							
 							$busca = "SELECT id, id_enquete, pergunta FROM CAD_enquete_pergunta WHERE id_enquete = '".$id_enquete."'";
-							$query2 = mysqli_query($db_alpha, $busca);
+							$query2 = mysqli_query($busca, $db_alpha);
 							if($res2 = mysqli_fetch_assoc($query2)) {
 								$pergunta = $res2['pergunta'];
 							}
