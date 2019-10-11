@@ -200,10 +200,10 @@
 						echo '<thead>';
 						echo '<tr style="height:45px;">';
 						echo '<td>ID</td>
-							  <td>T�TULO</td>
+							  <td>TÍTULO</td>
 							  <td>PERGUNTA</td>
 							  <td>UNIDADE</td>
-							  <td>BALC�O</td>
+							  <td>BALCÃO</td>
 							  <td>PUBLICADO</td>
 							  <td>ATIVO</td>';
 						echo '</tr>';
@@ -243,7 +243,7 @@
 							/*echo '<script>alert("'.$res['publicado'].'")</script>';*/
 							
 							$busca = "SELECT id, id_enquete, pergunta FROM CAD_enquete_pergunta WHERE id_enquete = '".$id_enquete."'";
-							$query2 = mysqli_query($busca, $db_alpha);
+							$query2 = mysqli_query($db_alpha, $busca);
 							if($res2 = mysqli_fetch_assoc($query2)) {
 								$pergunta = $res2['pergunta'];
 							}
