@@ -111,34 +111,12 @@
     <body>
     
     <?php
-	//ini_set('error_reporting',E_ALL);
+	ini_set('error_reporting',E_ALL);
+
+    die("Aqui");
+
 	//include("../connection.php");
 	include("../connection_alpha_homologacao.php");
-	
-	//$usuario = trim(strtoupper(substr($_SERVER["AUTH_USER"],8,100)));
-	$usuario = 'DJUNIOR';
-	
-	mysql_select_db("Siap", $db_alpha);
-	
-	$sql20 = "SELECT * FROM stUsuario where IdUsuario = '".$usuario."'";
-
-	//$qsql20 = mysql_query($sql20, $db2);
-	$qsql20 = mysql_query($sql20, $db_alpha);
-	//echo $db2;
-	if($res0 = mysql_fetch_assoc($qsql20)){
-		$unidade = trim($res0['IdUO']);
-		$email = trim($res0['email']);
-		$nomeUsusario = trim($res0['NOME']);
-	}
-	
-	//$unidade = "6";
-	$unidade = trim($unidade);
-	
-	if(is_numeric($unidade)) {
-		header("Location:index_unidade.php");
-	}
-
-	mysql_select_db("PortalSenacRS", $db_alpha);
 	
 	?>
         <!-- CLASSE QUE DEFINE O CONTAINER COMO FLUIDO (100%) -->
@@ -173,7 +151,7 @@
                                     <?php
                                     $sql = "SELECT IdUO, Nome FROM INF_unidades WHERE AtivoSite = 1 ORDER BY Nome";
                                     $query = mysqli_query($db_alpha, $sql);
-                                    while($res = mysql_fetch_assoc($query)) {
+                                    while($res = mysqli_fetch_assoc($query)) {
                                         echo '<option value="'.$res['IdUO'].'">'.$res['Nome'].'</option>';
                                     }
                                     ?>
@@ -195,7 +173,7 @@
                                     /*
 									$sql = "SELECT IdUO, Nome FROM INF_unidades WHERE AtivoSite = 1 ORDER BY Nome";
                                     $query = mysqli_query($db_alpha, $sql);
-                                    while($res = mysql_fetch_assoc($query)) {
+                                    while($res = mysqli_fetch_assoc($query)) {
                                         echo '<option value="'.$res['IdUO'].'">'.$res['Nome'].'</option>';
                                     }
 									*/

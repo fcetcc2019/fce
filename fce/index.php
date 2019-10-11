@@ -72,11 +72,8 @@
     <body>
     <?php
 	ini_set('error_reporting',E_ALL);
-	//include("../connection.php");
-	include("../connection_aries.php");
+	
 	include("../connection_alpha_homologacao.php");
-		
-	//mysqli_select_db("PortalSenacRS", $db_alpha);
 	
 	if(!isset($_GET['ativoInativo'])) {
 		$_GET['ativoInativo'] = 'ativas'; 
@@ -92,7 +89,7 @@
                         <a href="javascript:">Enquetes</a>
                     </li>
                     <li id="relatorios" class="aba">
-                        <a href="graficos.php">Relatórios</a>
+                        <a href="graficos.php">Relatï¿½rios</a>
                     </li>
                 </ul>
             </div>
@@ -105,7 +102,7 @@
                     </h1>
                     <hr>
                 </div>
-                <!-- COLUNA OCUPANDO 12 ESPAÇOS NO GRID -->
+                <!-- COLUNA OCUPANDO 12 ESPAï¿½OS NO GRID -->
                 <div class="row-fluid">
                     <div class="row-fluid">
                         <form class="form-inline" action="index.php">
@@ -203,10 +200,10 @@
 						echo '<thead>';
 						echo '<tr style="height:45px;">';
 						echo '<td>ID</td>
-							  <td>TÍTULO</td>
+							  <td>Tï¿½TULO</td>
 							  <td>PERGUNTA</td>
 							  <td>UNIDADE</td>
-							  <td>BALCÃO</td>
+							  <td>BALCï¿½O</td>
 							  <td>PUBLICADO</td>
 							  <td>ATIVO</td>';
 						echo '</tr>';
@@ -235,12 +232,12 @@
 								//$classe_publicado = 'btn-danger';
 								//$classe_publicado = 'label-important';
 								$classe_publicado = '';
-								$icon_publicado = '<img src="img/delete-icon.png" style="width:15px" title="Não publicada" />';
+								$icon_publicado = '<img src="img/delete-icon.png" style="width:15px" title="Nï¿½o publicada" />';
 								//$icon_publicado = "icon-ban-circle";
 							} else  if($res['publicado'] == ""){
 								$classe_publicado = '';
-								//$icon_publicado = "Nenhuma ação tomada com a enquete";
-								$icon_publicado = '<img src="img/icon-exclamation.png" style="width:22px" title="Nenhuma ação tomada" />';
+								//$icon_publicado = "Nenhuma aï¿½ï¿½o tomada com a enquete";
+								$icon_publicado = '<img src="img/icon-exclamation.png" style="width:22px" title="Nenhuma aï¿½ï¿½o tomada" />';
 							}
 							
 							/*echo '<script>alert("'.$res['publicado'].'")</script>';*/
@@ -298,7 +295,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                             <!--<button type="button" id="bt-publicaEnquete" class="bt-publicaEnquete btn btn-primary span2" id-enquete="" disabled>Publicar <i class="icone-publicar icon-edit"></i></button>
-                            <button type="button" id="bt-naoPublicaEnquete" class="bt-naoPublicaEnquete btn btn-danger span2" id-enquete="" disabled>Não publicar <i class="icone-publicar icon-edit"></i></button>-->
+                            <button type="button" id="bt-naoPublicaEnquete" class="bt-naoPublicaEnquete btn btn-danger span2" id-enquete="" disabled>Nï¿½o publicar <i class="icone-publicar icon-edit"></i></button>-->
                             <button type="button" id="bt-alteraEnquete" class="bt-alteraEnquete btn btn-primary span2" id-enquete="">Alterar enquete <i class="icone-publicar icon-edit"></i></button>
                         </div>
                     </div>
@@ -324,7 +321,7 @@
                                 <span id="msg-cadastraproduto"></span>
                             </div>
                             <div class="row-fluid">
-                                <div class="span12">Por que a enquete não deve ser publicada?</div>
+                                <div class="span12">Por que a enquete nï¿½o deve ser publicada?</div>
                                 <div class="span12">
                                 	<textarea name="justificativa" id="justificativa" style="width:93%; height:100px;"></textarea>
                                 </div>
