@@ -194,7 +194,7 @@
 						$busca = "SELECT id, titulo, unidade, (SELECT u.Nome FROM INF_unidades u WHERE u.IdUO = unidade) as nomeunidade, balcao, (SELECT b.Titulo FROM INF_balcoes b WHERE b.cod = balcao) as nomebalcao, publicado, ativo FROM CAD_enquete ".$where." ORDER BY id DESC";
 						
 						//echo $busca;
-						$query = mysqli_query($busca, $db_alpha);
+						$query = mysqli_query($db_alpha, $busca);
 						echo '<table class="table table-hover">';
 						//echo '<tr class="navbar-inner" style="height:45px;">';
 						echo '<thead>';
