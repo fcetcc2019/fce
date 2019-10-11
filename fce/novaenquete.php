@@ -113,9 +113,6 @@
     <?php
 	ini_set('error_reporting',E_ALL);
 
-    die("Aqui");
-
-	//include("../connection.php");
 	include("../connection_alpha_homologacao.php");
 	
 	?>
@@ -133,7 +130,7 @@
             </h1>
             <hr>
             <div class="row-fluid">
-                <!-- COLUNA OCUPANDO 10 ESPAÇOS NO GRID -->
+                <!-- COLUNA OCUPANDO 10 ESPAï¿½OS NO GRID -->
                 <form>
                 	<div class="well span12">
                     	<div class="row-fluid">
@@ -158,25 +155,23 @@
                                 </select>
                             </div>
                             <div class="span6">
-                                <label>Título:</label>
+                                <label>Tï¿½tulo:</label>
                                 <input type="text" name="enquete" id="enquete" class="span6" placeholder="Digite...">
                             </div>
                         </div>
                         <div class="row-fluid">
                         	<div class="span12">
                                 <input type="hidden" name="acao" id="acao" value="inserir" />
-                                <label>Balcão:</label>
+                                <label>Balcï¿½o:</label>
                                 <!--<input type="text" placeholder="Digite algo...">-->
                                 <select name="balcao" id="balcao" class="span6">
                                     <option>Selecione...</option>
                                     <?php
-                                    /*
-									$sql = "SELECT IdUO, Nome FROM INF_unidades WHERE AtivoSite = 1 ORDER BY Nome";
+                                    $sql = "SELECT IdUO, Nome FROM INF_unidades WHERE AtivoSite = 1 ORDER BY Nome";
                                     $query = mysqli_query($db_alpha, $sql);
                                     while($res = mysqli_fetch_assoc($query)) {
                                         echo '<option value="'.$res['IdUO'].'">'.$res['Nome'].'</option>';
                                     }
-									*/
                                     ?>
                                 </select>
                             </div>
@@ -190,7 +185,7 @@
                         </div>
                         <div class="row-fluid">
                             <div class="span12">
-                                <label>Título:</label>
+                                <label>Tï¿½tulo:</label>
                                 <input type="text" name="pergunta" id="pergunta" class="span12" placeholder="Digite...">
                             </div>
                         </div>
@@ -207,7 +202,7 @@
 									<input type="radio" name="tipoResposta" id="umaResposta" value="option1"> 1 Resposta (com campo aberto)
 								</label>
 								<label class="checkbox inline">
-									<input type="radio" name="tipoResposta" id="variasRespostas" value="option2"> Várias respostas
+									<input type="radio" name="tipoResposta" id="variasRespostas" value="option2"> Vï¿½rias respostas
 								</label>
                             </div>
                         </div>
@@ -242,7 +237,7 @@
                             </div>
                             <div class="row-fluid">
                                 <label class="checkbox inline">
-                                    <input type="radio" name="camposContato" id="camposContatoPadrao" value="padrao" checked> Campos padrão (Nome, E-mail, Telefone)
+                                    <input type="radio" name="camposContato" id="camposContatoPadrao" value="padrao" checked> Campos padrï¿½o (Nome, E-mail, Telefone)
                                 </label>
                                 <label class="checkbox inline">
                                     <input type="radio" name="camposContato" id="camposContatoDemaisCampos" value="demais"> Incluir mais campos
