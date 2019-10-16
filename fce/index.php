@@ -245,7 +245,7 @@
 							$busca = "SELECT id, id_enquete, pergunta FROM CAD_enquete_pergunta WHERE id_enquete = '".$id_enquete."'";
 							$query2 = mysqli_query($db_alpha, $busca);
 							if($res2 = mysqli_fetch_assoc($query2)) {
-								$pergunta = $res2['pergunta'];
+								$pergunta = utf8_encode($res2['pergunta']);
 							}
 														
 							
