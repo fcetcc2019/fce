@@ -89,7 +89,7 @@
                         <a href="javascript:">Enquetes</a>
                     </li>
                     <li id="relatorios" class="aba">
-                        <a href="graficos.php">Relat�rios</a>
+                        <a href="graficos.php">Relatórios</a>
                     </li>
                 </ul>
             </div>
@@ -321,7 +321,7 @@
                                 <span id="msg-cadastraproduto"></span>
                             </div>
                             <div class="row-fluid">
-                                <div class="span12">Por que a enquete n�o deve ser publicada?</div>
+                                <div class="span12">Por que a enquete não deve ser publicada?</div>
                                 <div class="span12">
                                 	<textarea name="justificativa" id="justificativa" style="width:93%; height:100px;"></textarea>
                                 </div>
