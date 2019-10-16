@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
     <head>
-        <meta charset="iso-8859-1">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <title>::: Enquetes :::</title>
 
