@@ -11,7 +11,7 @@ if($_POST['acao']=="buscar"){
 	//$sql = "SELECT e.id, e.titulo, p.pergunta, r.resposta, r.id_pergunta, e.publicado FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta INNER JOIN CAD_enquete e ON e.id = p.id_enquete WHERE e.id = '".$id_enquete."'";
 	$sql = "SELECT e.id, e.titulo, p.pergunta, r.resposta, r.id_pergunta, r.id id_resposta, e.publicado FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta INNER JOIN CAD_enquete e ON e.id = p.id_enquete WHERE e.id = '".$id_enquete."'";
 	
-	//$query = mysqli_query($db_alpha, $sql);
+	$query = mysqli_query($db_alpha, $sql);
 	
 	while($res = mysqli_fetch_assoc($query)) {
 		$res['id'] = utf8_encode($res['id']);
@@ -73,10 +73,10 @@ if($_POST['acao']=="insereJustificativa"){
 	
 	$sql = "INSERT INTO CAD_enquete_justificativa(id_enquete, justificativa, usuario, data) VALUES('".$id_enquete."', '".$justificativa."', '".$usuario."', NOW())";
 	//echo $sql;
-	if(mysql_query($sql, $db_alpha)) {
+	if(mysqli_query($sql, $db_alpha)) {
 		echo json_encode('ok');
 	} else {
-		echo json_encode('ERRO ao inserir a justificativa! - '.mysql_get_last_message());
+		echo json_encode('ERRO ao inserir a justificativa! - '.mysqli_connect_errno() . PHP_EOL);
 	}
 
 }
@@ -100,14 +100,14 @@ if($_POST['acao']=="inserir"){
 	
 	//echo json_encode($sql);
 	
-	if(mysql_query($sql, $db_alpha)) {
+	if(mysqli_query($db_alpha, $sql)) {
 		
 		if(isset($_POST['balcao']) && !empty($_POST['balcao'])) {
 			$buscaEnq = "SELECT id FROM CAD_enquete WHERE balcao = '".$_POST['balcao']."' ORDER BY id DESC";
 		} else {
 			$buscaEnq = "SELECT id FROM CAD_enquete WHERE unidade = '".$unidade."' ORDER BY id DESC";
 		}
-		$queryEnq = mysql_query($buscaEnq, $db_alpha);
+		$queryEnq = mysqli_query($db_alpha, $buscaEnq);
 		
 		$id_enquete = '';
 		if($resEnq = mysqli_fetch_assoc($queryEnq)) {
@@ -115,10 +115,10 @@ if($_POST['acao']=="inserir"){
 		}
 		
 		$sqlPergunta = "INSERT INTO CAD_enquete_pergunta(id_enquete, pergunta) VALUES ('".$id_enquete."','".$pergunta."')";
-		if(mysql_query($sqlPergunta, $db_alpha)) {
+		if(mysqli_query($db_alpha, $sqlPergunta)) {
 			
 			$buscaPerg = "SELECT id FROM CAD_enquete_pergunta WHERE id_enquete = '".$id_enquete."' ORDER BY id DESC";
-			$queryPerg = mysql_query($buscaPerg, $db_alpha);
+			$queryPerg = mysqli_query($db_alpha, $buscaPerg);
 			
 			$id_pergunta = '';
 			if($resPerg = mysqli_fetch_assoc($queryPerg)) {
@@ -133,8 +133,8 @@ if($_POST['acao']=="inserir"){
 					
 					//$sqlResposta = "INSERT INTO CAD_enquete_resposta(id_pergunta, resposta) VALUES ('".$id_pergunta."','".trim($respostas[$i])."')";
 					$sqlResposta = "INSERT INTO CAD_enquete_resposta(id_pergunta, resposta) VALUES ('".$id_pergunta."','".utf8_decode(trim($respostas[$i]))."')";
-					if(!mysql_query($sqlResposta)) {
-						echo json_encode('ERRO ao inserir a RESPOSTA da enquete! - '.mysql_get_last_message());
+					if(!mysqli_query($db_alpha, $sqlResposta)) {
+						echo json_encode('ERRO ao inserir a RESPOSTA da enquete! - '.mysqli_connect_errno() . PHP_EOL);
 					} else {
 						$ok++;
 					}
@@ -143,8 +143,8 @@ if($_POST['acao']=="inserir"){
 			} else {
 				
 				$sqlResposta = "INSERT INTO CAD_enquete_resposta(id_pergunta, resposta) VALUES ('".$id_pergunta."','".utf8_decode(trim($respostas))."')";
-				if(!mysql_query($sqlResposta)) {
-					echo json_encode('ERRO ao inserir a RESPOSTA da enquete! - '.mysql_get_last_message());
+				if(!mysqli_query($db_alpha, $sqlResposta)) {
+					echo json_encode('ERRO ao inserir a RESPOSTA da enquete! - '.mysqli_connect_errno() . PHP_EOL);
 				} else {
 					$ok++;
 				}
@@ -152,7 +152,7 @@ if($_POST['acao']=="inserir"){
 			}
 			
 		} else {
-			echo json_encode('ERRO ao inserir a PERGUNTA da enquete! - '.mysql_get_last_message());
+			echo json_encode('ERRO ao inserir a PERGUNTA da enquete! - '.mysqli_connect_errno() . PHP_EOL);
 		}
 
 		if(is_array($demaiscampos)) {
@@ -160,23 +160,23 @@ if($_POST['acao']=="inserir"){
 			for($i = 0; $i < count($demaiscampos); $i++) {
 				$sqlDemaisCampos = "INSERT INTO CAD_enquete_contato_demaiscampos(campo, id_enquete) VALUES ('".utf8_decode(trim($demaiscampos[$i]))."','".$id_enquete."')";
 
-				if(mysql_query($sqlDemaisCampos)) {
+				if(mysqli_query($db_alpha, $sqlDemaisCampos)) {
 					echo json_encode('tudo certo com os campos de contato - ');
 				} else {
-					echo json_encode('ERRO com os campos de contato - '.mysql_get_last_message());
+					echo json_encode('ERRO com os campos de contato - '.mysqli_connect_errno() . PHP_EOL);
 				}
 			}
 			
 		}
 		
 	} else {
-		echo json_encode('ERRO ao inserir a enquete! - '.mysql_get_last_message());
+		echo json_encode('ERRO ao inserir a enquete! - '.mysqli_connect_errno() . PHP_EOL);
 	}
 	
 	if($ok > 0) {
 		echo json_encode('Enquete inserida com sucesso!');
 	} else {
-		echo json_encode('ERRO GERAL ao inserir a enquete! - '.mysql_get_last_message());
+		echo json_encode('ERRO GERAL ao inserir a enquete! - '.mysqli_connect_errno() . PHP_EOL);
 	}
 	
 }
@@ -192,10 +192,10 @@ if($_POST['acao']=="atualizar"){
 	
 	$sql = "UPDATE INF_artigos SET ID_Unidade = '".$unidade."', Eixo = '".$area."', Titulo = '".$titulo."', Autor = '".$autor."', Formacao = '".$formacao."', Artigo = '".$artigo."' WHERE Id = '".$_POST['id_artigo']."'";
 	//echo $sql;
-	if(mysql_query($sql, $db_alpha)) {
+	if(mysqli_query($db_alpha, $sql)) {
 		echo json_encode('Artigo atualizado com sucesso!');
 	} else {
-		echo json_encode('ERRO ao atualizar o artigo! - '.mysql_get_last_message());
+		echo json_encode('ERRO ao atualizar o artigo! - '.mysqli_connect_errno() . PHP_EOL);
 	}
 
 }
@@ -203,12 +203,12 @@ if($_POST['acao']=="atualizar"){
 if($_POST['acao']=="excluir"){
 	//echo 'Aqui! - '.$_POST['id'];
 	$sql = "DELETE FROM INF_artigos WHERE Id = '".$_POST['id']."'";
-	if(mysql_query($sql, $db_alpha)) {
+	if(mysqli_query($db_alpha, $sql)) {
 		//echo json_encode('Artigo excluído com sucesso!');
 		echo utf8_encode('Artigo excluído com sucesso!');
 	} else {
-		//echo json_encode('ERRO ao excluir o artigo! - '.mysql_get_last_message());
-		echo utf8_encode('ERRO ao excluir o artigo! - '.mysql_get_last_message());
+		//echo json_encode('ERRO ao excluir o artigo! - '.mysqli_get_last_message());
+		echo utf8_encode('ERRO ao excluir o artigo! - '.mysqli_connect_errno() . PHP_EOL);
 	}
 
 }
@@ -220,7 +220,7 @@ if($_POST['acao']=="ativar_desativar"){
 	
 	$sql = "UPDATE CAD_enquete SET ativo = '".$ativo."' WHERE id = '".$_POST['id_enquete']."'";
 	//echo $sql;
-	if(mysql_query($sql, $db_alpha)) {
+	if(mysqli_query($db_alpha, $sql)) {
 		echo json_encode('ok');
 	} else {
 		echo json_encode('erro');
@@ -238,10 +238,10 @@ if($_POST['acao']=="altera_pergunta"){
 	//echo json_encode($sql);
 	//die();
 	
-	if(mysql_query($sql, $db_alpha)) {
+	if(mysqli_query($db_alpha, $sql)) {
 		echo json_encode(1);
 	} else {
-		echo json_encode('ERRO altera_pergunta - '.mysql_get_last_message());
+		echo json_encode('ERRO altera_pergunta - '.mysqli_connect_errno() . PHP_EOL);
 	}
 
 }
@@ -256,10 +256,10 @@ if($_POST['acao']=="altera_resposta"){
 	//echo json_encode($sql);
 	//die();
 	
-	if(mysql_query($sql, $db_alpha)) {
+	if(mysqli_query($db_alpha, $sql)) {
 		echo json_encode(1);
 	} else {
-		echo json_encode('ERRO altera_resposta - '.mysql_get_last_message());
+		echo json_encode('ERRO altera_resposta - '.mysqli_connect_errno() . PHP_EOL);
 	}
 
 }
@@ -272,7 +272,7 @@ if($_POST['acao']=="publicar"){
 	//$sql = "UPDATE CAD_enquete SET publicado = '".$publicado."' WHERE id = '".$_POST['id_enquete']."'";
 	$sql = "UPDATE CAD_enquete SET publicado = '1' WHERE id = '".$_POST['id_enquete']."'";
 	//echo $sql;
-	if(mysql_query($sql, $db_alpha)) {
+	if(mysqli_query($db_alpha, $sql)) {
 		echo json_encode('ok');
 	} else {
 		echo json_encode('erro');
@@ -288,7 +288,7 @@ if($_POST['acao']=="naopublicar"){
 	//$sql = "UPDATE CAD_enquete SET publicado = '".$publicado."' WHERE id = '".$_POST['id_enquete']."'";
 	$sql = "UPDATE CAD_enquete SET publicado = '0' WHERE id = '".$_POST['id_enquete']."'";
 	//echo $sql;
-	if(mysql_query($sql, $db_alpha)) {
+	if(mysqli_query($db_alpha, $sql)) {
 		echo json_encode('ok');
 	} else {
 		echo json_encode('erro');
