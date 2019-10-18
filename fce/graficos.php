@@ -94,35 +94,8 @@
     </head>
     <body>
     <?php
-	//ini_set('error_reporting',E_ALL);
-	//include("../connection.php");
-	include("../connection_aries.php");
+	//ini_set('display_errors',1);
 	include("../connection_alpha_homologacao.php");
-	
-	//$usuario = trim(strtoupper(substr($_SERVER["AUTH_USER"],8,100)));
-	$usuario = 'DJUNIOR';
-	
-	mysql_select_db("Siap", $db_alpha);
-	
-	$sql20 = "SELECT * FROM stUsuario where IdUsuario = '".$usuario."'";
-
-	//$qsql20 = mysql_query($sql20, $db2);
-	$qsql20 = mysql_query($sql20, $db_alpha);
-	//echo $db2;
-	if($res0 = mysql_fetch_assoc($qsql20)){
-		$unidade = trim($res0['IdUO']);
-		$email = trim($res0['email']);
-		$nomeUsusario = trim($res0['NOME']);
-	}
-	
-	//$unidade = "6";
-	$unidade = trim($unidade);
-	
-	if(is_numeric($unidade)) {
-		header("Location:index_unidade.php");
-	}
-
-	mysql_select_db("PortalSenacRS", $db_alpha);
 	
 	if(!isset($_GET['ativoInativo'])) {
 		$_GET['ativoInativo'] = 'ativas'; 
@@ -146,9 +119,9 @@
             <div class="row-fluid secoes relatorios">
             	<?php
 				$top10 = "SELECT unidade, count(*) as total FROM cad_enquete group by unidade order by total desc LIMIT 0, 10";
-				$queryTop10 = mysql_query($top10, $db_alpha);
+				$queryTop10 = mysqli_query($db_alpha, $top10);
 				$valores_hichart = '';
-				while($resTop10 = mysql_fetch_assoc($queryTop10)) {
+				while($resTop10 = mysqli_fetch_assoc($queryTop10)) {
 					$valores_hichart .= "['".$resTop10['unidade']."', ".$resTop10['total']."],";
 				}
 				
@@ -237,8 +210,8 @@
                 
                 <?php
 				$unidadesComEnquetes = "select distinct u.iduo, u.nome from CAD_enquete e right join INF_unidades u on u.iduo = e.unidade order by u.nome";
-				$queryComEnquetes = mysql_query($unidadesComEnquetes, $db_alpha);
-				while($comEnquetes = mysql_fetch_assoc($queryComEnquetes)) {
+				$queryComEnquetes = mysqli_query($db_alpha, $unidadesComEnquetes);
+				while($comEnquetes = mysqli_fetch_assoc($queryComEnquetes)) {
 					echo '<div class="row-fluid">
 							<div class="linha_inteira bloco-grafico" iduo="'.$comEnquetes['iduo'].'">'.$comEnquetes['nome'].'</div>
 							<div class="linha_inteira canvas-grafico" iduo="'.$comEnquetes['iduo'].'">
