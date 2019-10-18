@@ -1,4 +1,5 @@
 <?php
+//ini_set("display_errors", 1);
 require_once('conexao_alpha_homologacao.php');
 
 class Enquete {
@@ -18,7 +19,7 @@ class Enquete {
 		$consulta = $this->conexao->query("SELECT * FROM CAD_enquete");
 		$dados = array();
 		
-		while($resultado = mysql_fetch_assoc($consulta)) {
+		while($resultado = mysqli_fetch_assoc($consulta)) {
 			$dados[] = $resultado;
 		}
 		
@@ -30,7 +31,7 @@ class Enquete {
 		$consulta = $this->conexao->query("SELECT * FROM CAD_enquete WHERE unidade = '".$iduo."'");
 		$dados = array();
 		
-		while($resultado = mysql_fetch_assoc($consulta)) {
+		while($resultado = mysqli_fetch_assoc($consulta)) {
 			$dados[] = $resultado;
 		}
 		
@@ -43,7 +44,10 @@ class Enquete {
 SELECT COUNT(*) total FROM CAD_enquete) AS total_geral");
 		$dados = array();
 		
-		while($resultado = mysql_fetch_assoc($consulta)) {
+		while($resultado = mysqli_fetch_assoc($consulta)) {
+			//$resultado['total_unidade'] = utf8_encode($resultado['total_unidade']);
+			//$resultado['total_geral'] = utf8_encode($resultado['total_geral']);
+
 			$dados[] = $resultado;
 		}
 		
@@ -58,7 +62,7 @@ SELECT COUNT(*) total FROM CAD_enquete) AS total_geral");
 		$dados = array();
 		$id_enquete = 0;
 		
-		while($resultado = mysql_fetch_assoc($consulta)) { //---> Retorno para array
+		while($resultado = mysqli_fetch_assoc($consulta)) { //---> Retorno para array
 		//while($resultado = mysql_fetch_object($consulta)) { //---> Retorno para objeto
 			$dados[] = $resultado;
 			$id_enquete = $resultado['id_enquete']; //---> Forma de array
@@ -78,7 +82,7 @@ SELECT COUNT(*) total FROM CAD_enquete) AS total_geral");
 			$dados = array();
 			$id_enquete = 0;
 			
-			while($resultado = mysql_fetch_assoc($consulta)) {
+			while($resultado = mysqli_fetch_assoc($consulta)) {
 				$dados[] = $resultado;
 			}
 
