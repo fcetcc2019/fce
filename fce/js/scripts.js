@@ -834,7 +834,7 @@ $(document).ready(function() {
 	function tituloEnquete() {
 		
 		var value = $('.titulo-enquete option:selected').text();
-		console.log(value);
+		//console.log(value);
 		
 		if($('.titulo-enquete option:selected').val() != '') {
 			
@@ -1120,7 +1120,7 @@ $(document).ready(function() {
 				'acao': 'total_unidade_total_geral'
 			},
 			cache: false,
-			dataType: "json",
+			dataType: 'json',
 			async: false,
 			beforeSend: function() {
 				//console.log(iduo);
@@ -1135,6 +1135,8 @@ $(document).ready(function() {
 
 				var dados_grafico = [data[0].total_unidade, data[0].total_geral];
 
+				console.log(dados_grafico);
+
 				//setTimeout(montaGrafico('canvas-'+iduo, dados_grafico), 8000);
 				montaGrafico('canvas-'+iduo, dados_grafico);
 
@@ -1144,8 +1146,13 @@ $(document).ready(function() {
 				
 				
 			},
-			error: function(a){//SERVER ERROR
+			error: function(a, exception){//SERVER ERROR
 				console.log("SERVER ERROR - verificaEnquetesAtivas() - "+a.responseText);
+				console.log(a.status);
+				console.log(exception);
+				if (exception === 'parsererror') {
+	                console.log('Requested JSON parse failed.');
+	            }
 			}
 		});
 	
