@@ -20,13 +20,13 @@ class ConexaoAlpha {
 	function __construct() {
 
 		
-		$this->url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+		$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-		$this->usuario = $this->url["user"];
-		$this->senha = $this->url["pass"];
-		$this->servidor = $this->url["host"];
+		$this->usuario = $url["user"];
+		$this->senha = $url["pass"];
+		$this->servidor = $url["host"];
 		$this->banco = '';
-		$this->db = substr($this->url["path"], 1);
+		$this->db = substr($url["path"], 1);
 		$this->link = '';
 		
 		/*
