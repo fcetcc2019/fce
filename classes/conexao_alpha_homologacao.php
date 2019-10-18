@@ -15,12 +15,12 @@ class ConexaoAlpha {
 	private $banco = '';
 	private $db = '';
 	private $link = '';
-	private $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+	private $url = '';
 	
 	function __construct() {
 
 		
-		//$this->url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+		$this->url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 		$this->usuario = $this->url["user"];
 		$this->senha = $this->url["pass"];
@@ -37,7 +37,7 @@ class ConexaoAlpha {
 		$this->db = 'PortalSenacRS';
 		$this->link = '';
 		
-		$this->link = mysql_connect($this->servidor, $this->usuario, $this->senha) or die ("ERRO de conexão! -> ".mysql_error());
+		$this->link = mysql_connect($this->servidor, $this->usuario, $this->senha) or die ("ERRO de conexÃ£o! -> ".mysql_error());
 		$this->banco = mysql_select_db($this->db, $this->link) or die ("ERRO ao selecionar o banco! -> ".mysql_error());
 		*/
 
