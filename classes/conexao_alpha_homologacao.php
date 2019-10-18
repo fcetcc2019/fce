@@ -19,7 +19,7 @@ class ConexaoAlpha {
 	
 	function __construct() {
 
-		/*
+		
 		$this->url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 		$this->usuario = $url["user"];
@@ -28,15 +28,15 @@ class ConexaoAlpha {
 		$this->banco = '';
 		$this->db = substr($url["path"], 1);
 		$this->link = '';
-		*/
-
+		
+		/*
 		$this->usuario = 'root';
 		$this->senha = '';
 		$this->servidor = 'localhost';
 		$this->banco = '';
 		$this->db = 'PortalSenacRS';
 		$this->link = '';
-		/*
+		
 		$this->link = mysql_connect($this->servidor, $this->usuario, $this->senha) or die ("ERRO de conexão! -> ".mysql_error());
 		$this->banco = mysql_select_db($this->db, $this->link) or die ("ERRO ao selecionar o banco! -> ".mysql_error());
 		*/
