@@ -212,6 +212,8 @@
 				$unidadesComEnquetes = "select distinct u.iduo, u.nome from CAD_enquete e right join INF_unidades u on u.iduo = e.unidade order by u.nome";
 				$queryComEnquetes = mysqli_query($db_alpha, $unidadesComEnquetes);
 				while($comEnquetes = mysqli_fetch_assoc($queryComEnquetes)) {
+					$comEnquetes['nome'] = utf8_encode($comEnquetes['nome']);
+
 					echo '<div class="row-fluid">
 							<div class="linha_inteira bloco-grafico" iduo="'.$comEnquetes['iduo'].'">'.$comEnquetes['nome'].'</div>
 							<div class="linha_inteira canvas-grafico" iduo="'.$comEnquetes['iduo'].'">

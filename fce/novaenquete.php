@@ -237,7 +237,7 @@
                             </div>
                             <div class="row-fluid">
                                 <label class="checkbox inline">
-                                    <input type="radio" name="camposContato" id="camposContatoPadrao" value="padrao" checked> Campos padr�o (Nome, E-mail, Telefone)
+                                    <input type="radio" name="camposContato" id="camposContatoPadrao" value="padrao" checked> Campos padrão (Nome, E-mail, Telefone)
                                 </label>
                                 <label class="checkbox inline">
                                     <input type="radio" name="camposContato" id="camposContatoDemaisCampos" value="demais"> Incluir mais campos

@@ -156,6 +156,8 @@
                                         $unidades = "SELECT IdUO, Nome FROM INF_unidades WHERE AtivoSite = 1 ORDER BY Nome";
                                         $q = mysqli_query($db_alpha, $unidades);
                                         while($r = mysqli_fetch_assoc($q)) {
+                                            $r['Nome'] = utf8_encode($r['Nome']);
+
                                             //if($r['IdUO'] == $unidade) {
                                             if($r['IdUO'] == $_GET['unidadeBusca']) {
                                                 echo '<option value="'.$r['IdUO'].'" selected="selected">'.$r['Nome'].'</option>';
@@ -203,8 +205,8 @@
 							  <td>TÍTULO</td>
 							  <td>PERGUNTA</td>
 							  <td>UNIDADE</td>
-							  <td>BALCÃO</td>
-							  <td>PUBLICADO</td>
+							  <!--<td>BALCÃO</td>
+							  <td>PUBLICADO</td>-->
 							  <td>ATIVO</td>';
 						echo '</tr>';
 						echo '</thead><tbody>';
@@ -214,6 +216,9 @@
 						$icon_publicado = "";
 						
 						while($res = mysqli_fetch_assoc($query)) {
+                            $res['titulo'] = utf8_encode($res['titulo']);
+                            $res['unidade'] = utf8_encode($res['unidade']);
+
 							$id_enquete = $res['id'];
 							
 							if($res['ativo'] == 1) {
@@ -255,8 +260,8 @@
 									<td class="linha" id_enquete="'.$id_enquete.'">'.$res['titulo'].'</td>
 									<td class="linha" id_enquete="'.$id_enquete.'">'.$pergunta.'</td>
 									<td class="linha" id_enquete="'.$id_enquete.'">'.$res['nomeunidade'].' ('.$res['unidade'].')</td>
-									<td class="linha" id_enquete="'.$id_enquete.'">'.$res['nomebalcao'].' ('.$res['balcao'].')</td>
-									<td><span id="bt-publicar-'.$res['id'].'" class="'.$classe_publicado.' bt-publicar" publicado="'.$res['publicado'].'" id_enquete="'.$res['id'].'" style="padding:8px;">'.$icon_publicado.'</span></td>
+									<!--<td class="linha" id_enquete="'.$id_enquete.'">'.$res['nomebalcao'].' ('.$res['balcao'].')</td>-->
+									<!--<td><span id="bt-publicar-'.$res['id'].'" class="'.$classe_publicado.' bt-publicar" publicado="'.$res['publicado'].'" id_enquete="'.$res['id'].'" style="padding:8px;">'.$icon_publicado.'</span></td>-->
 									<td><button type="button" id="bt-ativar-'.$res['id'].'" class="btn '.$classe_ativo.' bt-ativar" ativo="'.$res['ativo'].'" id_enquete="'.$res['id'].'" id_unidade="'.$res['unidade'].'" id_balcao="'.$res['balcao'].'"><i class="icon-off icon-white"></i></button></td>
 								</tr>
 							';
