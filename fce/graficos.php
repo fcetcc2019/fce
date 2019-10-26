@@ -111,7 +111,7 @@
                         <a href="index.php">Enquetes</a>
                     </li>
                     <li id="relatorios" class="aba active">
-                        <a href="graficos.php">RelatÛrios</a>
+                        <a href="graficos.php">Relat√≥rios</a>
                     </li>
                 </ul>
             </div>
@@ -174,7 +174,7 @@
 								['Karachi', 14.0],
 								['Mumbai', 12.5],
 								['Moscow', 12.1],
-								['S„o Paulo', 11.8],
+								['S√£o Paulo', 11.8],
 								['Beijing', 11.7],
 								['Guangzhou', 11.1],
 								['Delhi', 11.1],
@@ -262,7 +262,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                             <!--<button type="button" id="bt-publicaEnquete" class="bt-publicaEnquete btn btn-primary span2" id-enquete="" disabled>Publicar <i class="icone-publicar icon-edit"></i></button>
-                            <button type="button" id="bt-naoPublicaEnquete" class="bt-naoPublicaEnquete btn btn-danger span2" id-enquete="" disabled>N„o publicar <i class="icone-publicar icon-edit"></i></button>-->
+                            <button type="button" id="bt-naoPublicaEnquete" class="bt-naoPublicaEnquete btn btn-danger span2" id-enquete="" disabled>N√£o publicar <i class="icone-publicar icon-edit"></i></button>-->
                             <button type="button" id="bt-alteraEnquete" class="bt-alteraEnquete btn btn-primary span2" id-enquete="">Alterar enquete <i class="icone-publicar icon-edit"></i></button>
                         </div>
                     </div>
@@ -288,7 +288,7 @@
                                 <span id="msg-cadastraproduto"></span>
                             </div>
                             <div class="row-fluid">
-                                <div class="span12">Por que a enquete n„o deve ser publicada?</div>
+                                <div class="span12">Por que a enquete n√£o deve ser publicada?</div>
                                 <div class="span12">
                                 	<textarea name="justificativa" id="justificativa" style="width:93%; height:100px;"></textarea>
                                 </div>
