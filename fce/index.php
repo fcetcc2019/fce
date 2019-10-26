@@ -217,7 +217,7 @@
 						
 						while($res = mysqli_fetch_assoc($query)) {
                             $res['titulo'] = utf8_encode($res['titulo']);
-                            $res['unidade'] = utf8_encode($res['unidade']);
+                            $res['nomeunidade'] = utf8_encode($res['nomeunidade']);
 
 							$id_enquete = $res['id'];
 							
