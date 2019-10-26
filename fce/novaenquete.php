@@ -155,14 +155,14 @@
                                 </select>
                             </div>
                             <div class="span6">
-                                <label>T�tulo:</label>
+                                <label>Título:</label>
                                 <input type="text" name="enquete" id="enquete" class="span6" placeholder="Digite...">
                             </div>
                         </div>
-                        <div class="row-fluid">
+                        <div class="row-fluid" style="display: none;">
                         	<div class="span12">
                                 <input type="hidden" name="acao" id="acao" value="inserir" />
-                                <label>Balc�o:</label>
+                                <label>Balcão:</label>
                                 <!--<input type="text" placeholder="Digite algo...">-->
                                 <select name="balcao" id="balcao" class="span6">
                                     <option>Selecione...</option>
@@ -185,7 +185,7 @@
                         </div>
                         <div class="row-fluid">
                             <div class="span12">
-                                <label>T�tulo:</label>
+                                <label>Título:</label>
                                 <input type="text" name="pergunta" id="pergunta" class="span12" placeholder="Digite...">
                             </div>
                         </div>
@@ -202,7 +202,7 @@
 									<input type="radio" name="tipoResposta" id="umaResposta" value="option1"> 1 Resposta (com campo aberto)
 								</label>
 								<label class="checkbox inline">
-									<input type="radio" name="tipoResposta" id="variasRespostas" value="option2"> V�rias respostas
+									<input type="radio" name="tipoResposta" id="variasRespostas" value="option2"> Várias respostas
 								</label>
                             </div>
                         </div>
