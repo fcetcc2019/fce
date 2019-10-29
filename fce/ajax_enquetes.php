@@ -8,8 +8,8 @@ if($_POST['acao']=="buscar"){
 	$dados[] = '';
 	$id_enquete = $_POST['id_enquete'];
 	
-	//$sql = "SELECT e.id, e.titulo, p.pergunta, r.resposta, r.id_pergunta, e.publicado FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta INNER JOIN CAD_enquete e ON e.id = p.id_enquete WHERE e.id = '".$id_enquete."'";
-	$sql = "SELECT e.id, e.titulo, p.pergunta, r.resposta, r.id_pergunta, r.id id_resposta, e.publicado FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta INNER JOIN CAD_enquete e ON e.id = p.id_enquete WHERE e.id = '".$id_enquete."'";
+	//$sql = "SELECT e.id, e.titulo, p.pergunta, r.resposta, r.id_pergunta, r.id id_resposta, e.publicado FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta INNER JOIN CAD_enquete e ON e.id = p.id_enquete WHERE e.id = '".$id_enquete."'";
+	$sql = "SELECT e.id, e.unidade, e.titulo, p.pergunta, r.resposta, r.id_pergunta, r.id id_resposta, e.publicado FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON p.id = r.id_pergunta INNER JOIN CAD_enquete e ON e.id = p.id_enquete WHERE e.id = '".$id_enquete."'";
 	
 	$query = mysqli_query($db_alpha, $sql);
 	
