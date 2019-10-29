@@ -355,6 +355,7 @@ $(document).ready(function() {
 						$('.extrato_respostas').html('<a href="relatorio_enquete.php?id='+data[i].id+'">Clique aqui e veja as respostas desta enquete</a>');
 						$('.bt-publicaEnquete, .bt-naoPublicaEnquete').attr('id-enquete', data[i].id);
 						$('.bt-alteraEnquete').attr('id-enquete', data[i].id);
+						$('.iframe').html('<textarea style="width:97%; border:0; resize:none; box-shadow:0 0 0 #fff; cursor:default; font-family: monospace;" readonly><iframe src="http://fcetcc.herokuapp.com/fce/embed/?d='+data[i].unidade+'" frameborder="0"></iframe></textarea>');
 						
 						dadosEnquete.push(data[i]);
 						
