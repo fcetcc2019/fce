@@ -1,5 +1,5 @@
 <?php
-include("../connection_aries.php");
+//include("../connection_aries.php");
 //include("../connection.php");
 include("../connection_alpha_homologacao.php");
 
@@ -7,7 +7,7 @@ $usuario = 'DJUNIOR';
 	
 //mysql_select_db("Siap", $db_alpha);
 
-mysql_select_db("PortalSenacRS", $db_alpha);
+//mysql_select_db("PortalSenacRS", $db_alpha);
 
 if(isset($_GET['id']) && !empty($_GET['id'])) {
 	$sql = "SELECT     e.titulo, p.pergunta, r.resposta, e.unidade,
@@ -24,7 +24,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 			
 	//echo $sql;
 	//$query = mysql_query($sql, $db);
-	$query = mysql_query($sql, $db_alpha);
+	$query = mysqli_query($db_alpha, $sql);
 	$resposta_cliente = "";
 	$resposta = "";
 	$tabela_listagem = '';
@@ -36,7 +36,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	$pergunta = '';
 	$id_enquete = $_GET['id'];
 	
-	while($res = mysql_fetch_assoc($query)) {
+	while($res = mysqli_fetch_assoc($query)) {
 		if($res['valor'] == 'undefined') {
 			$resposta_cliente = '';
 			$th_respostacliente = '';
@@ -75,16 +75,16 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 		WHERE e.id = ".$_GET['id']."
 		GROUP BY r.resposta";
 		
-		//*******  PARA ORDENAR AS RESPOSTAS DA MAIOR PARA A MENOR... VAI FACILITAR PARA DESTACAR A MAIOR FATIA DO GR¡FICO  ********
+		//*******  PARA ORDENAR AS RESPOSTAS DA MAIOR PARA A MENOR... VAI FACILITAR PARA DESTACAR A MAIOR FATIA DO GR√ÅFICO  ********
 		$sql .= " ORDER BY total DESC";
 		
 		//$query2 = mysql_query($sql, $db);
-		$query2 = mysql_query($sql, $db_alpha);
+		$query2 = mysqli_query($db_alpha, $sql);
 		$tabela_listagem2 = '';
 		$valores_hichart = '';
 		$volta = 0;
 		
-		while($res2 = mysql_fetch_assoc($query2)) {
+		while($res2 = mysqli_fetch_assoc($query2)) {
 			if(substr(trim($res2['resposta']), 0, 6) == "Outros") {
 				$resposta = '<td>Outros</td>';
 			} else {
@@ -93,7 +93,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 			
 			$tabela_listagem2 .= '<tr>'.$resposta.'<td>'.utf8_encode($res2['total']).'</td></tr>';
 			
-			//*********  ADICIONA OS VALORES AO GR¡FICO Hicharts  ************
+			//*********  ADICIONA OS VALORES AO GR√ÅFICO Hicharts  ************
 			if($volta == 0) {
 				//*******  AQUI O MAIOR VALOR  *******
 				$valores_hichart .= "{ name: '".$resposta."', y: ".((utf8_encode($res2['total']) * 100) / $total).", sliced: true, selected: true },";
@@ -120,7 +120,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 		<script type="text/javascript" src="script.js"></script>
 		<link href="estilo.css" rel="stylesheet" type="text/css" />
         
-        <meta charset="iso-8859-1">
+        <meta charset="utf-8">
         <title>Relat&oacute;rio de enquete</title>
 
  
@@ -215,7 +215,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
             </div>
             
             <div class="row-fluid">
-                <!-- COLUNA OCUPANDO 12 ESPA«OS NO GRID -->
+                <!-- COLUNA OCUPANDO 12 ESPA√áOS NO GRID -->
                 <div class="row-fluid">
                     <div class="span12" style="margin:20px 0; font-size:2em;">
                         <div class="span4" style="padding:8px 0;">Total de linhas: <?php echo $total; ?></div>
