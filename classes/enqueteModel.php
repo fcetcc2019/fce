@@ -57,15 +57,19 @@ SELECT COUNT(*) total FROM CAD_enquete) AS total_geral");
 	function listaEnqueteAtiva($id_unidade) {
 		
 		//$consulta = $this->conexao->query("SELECT p.id_enquete, e.titulo, p.pergunta, r.id, r.resposta FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON r.id_pergunta = p.id INNER JOIN CAD_enquete e ON p.id_enquete = e.id WHERE e.ativo = 1 AND e.unidade = ".$id_unidade." ORDER BY e.id DESC");
-		$consulta = $this->conexao->query("SELECT p.id_enquete, e.titulo, p.pergunta, r.id, r.resposta FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON r.id_pergunta = p.id INNER JOIN CAD_enquete e ON p.id_enquete = e.id WHERE e.ativo = 1 AND e.unidade = ".$id_unidade." ORDER BY r.id");
+		$consulta = $this->conexao->query("SELECT p.id_enquete, e.titulo, p.pergunta, r.id, r.resposta FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON r.id_pergunta = p.id INNER JOIN CAD_enquete e ON p.id_enquete = e.id WHERE e.ativo = 1 AND e.unidade = ".$id_unidade." ORDER BY r.id DESC");
 		
 		$dados = array();
 		$id_enquete = 0;
 		
 		while($resultado = mysqli_fetch_assoc($consulta)) { //---> Retorno para array
 		//while($resultado = mysql_fetch_object($consulta)) { //---> Retorno para objeto
+			$resultado['pergunta'] = utf8_encode($resultado['pergunta']);
+			$resultado['resposta'] = utf8_encode($resultado['resposta']);
+			$id_enquete = $resultado['id_enquete'];
+
 			$dados[] = $resultado;
-			$id_enquete = $resultado['id_enquete']; //---> Forma de array
+			
 			//$id_enquete = $resultado->id_enquete; //---> Forma de objeto
 		}
 
@@ -76,9 +80,11 @@ SELECT COUNT(*) total FROM CAD_enquete) AS total_geral");
 
 	function listaDemaisCampos() {
 
+		//return "SELECT * FROM CAD_enquete_contato_demaiscampos WHERE id_enquete = ".$this->idEnquete;
+
 		if($this->idEnquete != 0) {
 			$consulta = $this->conexao->query("SELECT * FROM CAD_enquete_contato_demaiscampos WHERE id_enquete = ".$this->idEnquete);
-			
+			//return "SELECT * FROM CAD_enquete_contato_demaiscampos WHERE id_enquete = ".$this->idEnquete;
 			$dados = array();
 			$id_enquete = 0;
 			
