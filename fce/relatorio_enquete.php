@@ -54,15 +54,17 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 			$resposta = '<td>'.utf8_encode($res['resposta']).'</td>';
 		}
 		
-		$tabela_listagem .= '<tr><td>'.utf8_encode($res['titulo']).'</td><td>'.utf8_encode($res['pergunta']).'</td>'.$resposta.'<td>'.utf8_encode($res['data']).'</td>'.$resposta_cliente.'<td>'.utf8_encode($res['nome']).'</td><td>'.utf8_encode($res['ddd']).'</td><td>'.utf8_encode($res['telefone']).'</td><td>'.utf8_encode($res['dddcelular']).'</td><td>'.utf8_encode($res['celular']).'</td><td>'.utf8_encode($res['email']).'</td></tr>';
+		//$tabela_listagem .= '<tr><td>'.utf8_encode($res['titulo']).'</td><td>'.utf8_encode($res['pergunta']).'</td>'.$resposta.'<td>'.utf8_encode($res['data']).'</td>'.$resposta_cliente.'<td>'.utf8_encode($res['nome']).'</td><td>'.utf8_encode($res['ddd']).'</td><td>'.utf8_encode($res['telefone']).'</td><td>'.utf8_encode($res['dddcelular']).'</td><td>'.utf8_encode($res['celular']).'</td><td>'.utf8_encode($res['email']).'</td></tr>';
+		$tabela_listagem .= '<tr><td>'.utf8_encode($res['titulo']).'</td><td>'.utf8_encode($res['pergunta']).'</td>'.$resposta.'<td>'.utf8_encode($res['data']).'</td>'.$resposta_cliente.'<td>'.utf8_encode($res['nome']).'</td><td>'.utf8_encode($res['ddd']).'</td><td>'.utf8_encode($res['telefone']).'</td><td>'.utf8_encode($res['email']).'</td></tr>';
 		
 		$pergunta = utf8_encode($res['pergunta']);
 		
 		$total++;
 	}
 	
-	$tabela_header = '<tr><th>T&Iacute;TULO</th><th>PERGUNTA</th>'.$th_resposta.'<th>DATA</th>'.$th_respostacliente.'<th>NOME</th><th>DDD</th><th>TELEFONE</th><th>DDD CELULAR</th><th>CELULAR</th><th>E-MAIL</th></tr>';
-	
+	//$tabela_header = '<tr><th>T&Iacute;TULO</th><th>PERGUNTA</th>'.$th_resposta.'<th>DATA</th>'.$th_respostacliente.'<th>NOME</th><th>DDD</th><th>TELEFONE</th><th>DDD CELULAR</th><th>CELULAR</th><th>E-MAIL</th></tr>';
+	$tabela_header = '<tr><th>T&Iacute;TULO</th><th>PERGUNTA</th>'.$th_resposta.'<th>DATA</th>'.$th_respostacliente.'<th>NOME</th><th>DDD</th><th>TELEFONE</th><th>E-MAIL</th></tr>';																																																					   
+
 	$tabela_listagem = '<table class="table table-striped table-bordered">'.$tabela_header.$tabela_listagem.'</table>';
 	
 	if($mostra_agrupado) {
