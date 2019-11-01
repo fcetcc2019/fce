@@ -19,7 +19,8 @@
         
         
         <style>
-        
+        .grupo-respostas, .contatos { max-width: 500px;  }
+        .grupo-respostas .span12:first-child { margin-left: 11px; }
         </style>
  
     </head>
@@ -65,11 +66,16 @@
             			$respostas .= '</div>';
             		}
 
-            		echo $pergunta.$respostas;
+            		//echo $pergunta.$respostas;
+                    echo $pergunta;
+                    echo '<div class="row-fluid grupo-respostas">';
+                    echo $respostas;
+                    echo '<div class="span12" style="margin-top:25px;"><input type="button" name="enviar" id="enviar" value="Enviar" class="btn btn-default btn-large span6" style="padding-top:7px; padding-bottom:7px;" /></div>';
+                    echo '</div>';
 
             		echo '</div>'; // Fecha enquete
 
-            		echo '<div class="row-fluid contatos" style="max-width: 440px;">';
+            		echo '<div class="row-fluid contatos" style="display:none;">';
             		
             		echo '<div class="row-fluid"><h3>Deixe seus contatos!</h3></div>';
             		
@@ -97,7 +103,7 @@
 
             		}
 
-
+                    echo '<div class="span12" style="margin-top:25px;"><input type="button" name="salvar" id="salvar" value="Salvar" class="btn btn-default btn-large span8" style="padding-top:7px; padding-bottom:7px;" /></div>';
 
             		echo '</div>'; // Fecha contatos
             	}
@@ -110,4 +116,14 @@
         
     </body>
     <script src="../js/scripts.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('[name=outros]').css({'margin-bottom':'0'});
+
+            $('#enviar').click(function() {
+                $('.enquete').hide();
+                $('.contatos').show(300);
+            })
+        });
+    </script>
 </html>
