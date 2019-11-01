@@ -105,10 +105,10 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	header ("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
 	header ("Cache-Control: no-cache, must-revalidate");
 	header ("Pragma: no-cache");
-	//header ("Content-type: application/x-msexcel");
-	//header ("Content-Disposition: attachment; filename=\"".$pergunta.".xls\"" );
-	header ("Content-type: text/csv");
-	header ("Content-Disposition: attachment; filename=\"".$pergunta.".csv\"" );
+	header ("Content-type: application/x-msexcel");
+	header ("Content-Disposition: attachment; filename=\"".$pergunta.".xls\"" );
+	//header ("Content-type: text/csv");
+	//header ("Content-Disposition: attachment; filename=\"".$pergunta.".csv\"" );
 	header ("Content-Description: PHP Generated Data" );
 	// Envia o conteúdo do arquivo
 	echo $tabela_listagem;
