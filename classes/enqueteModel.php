@@ -57,7 +57,7 @@ SELECT COUNT(*) total FROM CAD_enquete) AS total_geral");
 	function listaEnqueteAtiva($id_unidade) {
 		
 		//$consulta = $this->conexao->query("SELECT p.id_enquete, e.titulo, p.pergunta, r.id, r.resposta FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON r.id_pergunta = p.id INNER JOIN CAD_enquete e ON p.id_enquete = e.id WHERE e.ativo = 1 AND e.unidade = ".$id_unidade." ORDER BY e.id DESC");
-		$consulta = $this->conexao->query("SELECT p.id_enquete, e.titulo, p.pergunta, r.id, r.resposta FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON r.id_pergunta = p.id INNER JOIN CAD_enquete e ON p.id_enquete = e.id WHERE e.ativo = 1 AND e.unidade = ".$id_unidade." ORDER BY r.id DESC");
+		$consulta = $this->conexao->query("SELECT p.id_enquete, e.titulo, p.pergunta, r.id, r.resposta FROM CAD_enquete_resposta r INNER JOIN CAD_enquete_pergunta p ON r.id_pergunta = p.id INNER JOIN CAD_enquete e ON p.id_enquete = e.id WHERE e.ativo = 1 AND e.unidade = ".$id_unidade." ORDER BY r.id");
 		
 		$dados = array();
 		$id_enquete = 0;
