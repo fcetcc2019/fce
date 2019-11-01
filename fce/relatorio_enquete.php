@@ -222,7 +222,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
                     <div class="span12" style="margin:20px 0; font-size:2em;">
                         <div class="span4" style="padding:8px 0;">Total de linhas: <?php echo $total; ?></div>
                         <div class="span4">
-                        	<a href="gera_excel.php?id=<?php echo $id_enquete; ?>" target="_blank" class="btn btn-success">Exportar para Excel</a>
+                        	<a href="gera_excel.php?id=<?php echo $id_enquete; ?>" target="_blank" class="btn btn-success">Exportar para CSV</a>
                         </div>
                     </div>
                 </div>
