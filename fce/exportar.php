@@ -11,6 +11,27 @@ MIME Types: https://www.iana.org/assignments/media-types/media-types.xhtml#appli
 
 include("../connection_alpha_homologacao.php");
 
+// Corrigir utf8 em string - recursivo em caso de array
+// https://www.php.net/manual/en/function.json-last-error.php#115980
+function corrigirUTF8($d) {
+
+	if(is_array($d)) {
+
+		foreach($d as $k => $v) {
+
+			$d[$k] = corrigirUTF8($v);
+
+		}
+
+	} else if(is_string($d)) {
+
+		return utf8_encode($d);
+
+	}
+
+	return $d;
+}
+
 if(isset($_GET['id']) && !empty($_GET['id'])) {
 
 	$sql = "SELECT e.titulo, p.pergunta, r.resposta, e.unidade, rc.data, rco.valor, rc.nome, rc.ddd, rc.telefone, rc.dddcelular, rc.celular, rc.email
@@ -26,6 +47,8 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 
 	//Todas as respostas
 	$resultado = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+	$resultado = corrigirUTF8($resultado);
 
 	// id + 20 caracteres da pergunta, com espaços trocados por underscore
 	$nomeDoArquivo = $_GET["id"]."_".str_replace(" ", "_", substr($resultado[0]["pergunta"], 0, 20));
@@ -43,11 +66,11 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 
 			$extensao = ".csv";
 
-			$conteudo = implode(",", array_keys($resultado[0]));
+			$conteudo = implode(",", array_keys($resultado[0]))."\n";
 
-			foreach($resultado as $valor) {
+			foreach($resultado as $resposta) {
 				
-				$conteudo .= implode(",", $valor)."\n";
+				$conteudo .= implode(",", $resposta)."\n";
 
 			}
 
@@ -61,8 +84,8 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 
 			$conteudo = '<table><tr><th>'.implode("</th><th>", array_keys($resultado[0])).'</th></tr>';
 
-			foreach ($resultado as $valor) {
-				$conteudo = '<tr><td>'.implode("</td><td>", $valor).'</td></tr>';
+			foreach ($resultado as $resposta) {
+				$conteudo .= '<tr><td>'.implode("</td><td>", $resposta).'</td></tr>';
 			}
 
 			$conteudo .= '</table>';
@@ -90,7 +113,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	header("Cache-Control: no-cache, must-revalidate");
 	header("Pragma: no-cache");
 	//header("Content-Type: ".$contentTypeHeader);
-	header("Content-Type: text/plain");
+	header("Content-Type: text/plain; charset=utf-8");
 	//header("Content-Disposition: attachment; filename=\"".$nomeDoArquivo.$extensao."\"" );
 	header("Content-Description: Respostas de Enquete - FCE" );
 	
