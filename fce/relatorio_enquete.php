@@ -231,7 +231,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
                         <div class="span4" style="padding:8px 0;">Total de linhas: <?php echo $total; ?></div>
                         <div class="span4">
                         	<div class="btn-group">
-								<a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">Exportar<span class="caret"></span></a>
+								<a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">Exportar <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="exportar.php?id=<?= $id_enquete; ?>&formato=csv" target="_blank">CSV</a></li>
 									<li><a href="exportar.php?id=<?= $id_enquete; ?>&formato=excel" target="_blank">Excel</a></li>

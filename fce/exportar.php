@@ -112,13 +112,11 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	header("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
 	header("Cache-Control: no-cache, must-revalidate");
 	header("Pragma: no-cache");
-	//header("Content-Type: ".$contentTypeHeader);
-	header("Content-Type: text/plain; charset=utf-8");
-	//header("Content-Disposition: attachment; filename=\"".$nomeDoArquivo.$extensao."\"" );
+	header("Content-Type: ".$contentTypeHeader."; charset=utf-8");
+	header("Content-Disposition: attachment; filename=\"".$nomeDoArquivo.$extensao."\"" );
 	header("Content-Description: Respostas de Enquete - FCE" );
 	
 	// Envia o conteúdo do arquivo
-	echo $nomeDoArquivo.$extensao."\n";
-	echo "<pre>".$conteudo."</pre>";
+	echo $conteudo;
 
 }
