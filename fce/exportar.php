@@ -27,6 +27,8 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	// Todas as respostas
 	$resultado = mysqli_fetch_all($query, MYSQLI_FETCH_ASSOC);
 
+	die(var_dump($resultado));
+
 	// id + 20 caracteres da pergunta, com espaços trocados por underscore
 	$nomeDoArquivo = $_GET["id"]."_".str_replace(" ", "_", substr($resultado[0]["pergunta"], 0, 20));
 
@@ -84,7 +86,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 
 	}
 
-	// Instrui o navegador a baixar o $conteudo como um arquivo no formato escolhido
+	/* // Instrui o navegador a baixar o $conteudo como um arquivo no formato escolhido
 	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 	header("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
 	header("Cache-Control: no-cache, must-revalidate");
@@ -92,9 +94,9 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	//header("Content-Type: ".$contentTypeHeader);
 	header("Content-Type: text/plain");
 	//header("Content-Disposition: attachment; filename=\"".$nomeDoArquivo.$extensao."\"" );
-	header("Content-Description: Respostas de Enquete - FCE" );
+	header("Content-Description: Respostas de Enquete - FCE" ); */
 	
 	// Envia o conteúdo do arquivo
-	echo $conteudo;
+	//echo $conteudo;
 
 }
