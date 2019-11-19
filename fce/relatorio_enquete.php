@@ -116,11 +116,11 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 <!DOCTYPE HTML>
 <html lang="en-US">
     <head>
-    	<script type="text/javascript" src="../jquery-ui-1.9.0.custom/js/jquery-2.0.3.min.js"></script>
+    	<script type="text/javascript" src="../jquery-ui-1.9.0.custom/js/jquery-1.8.2.js"></script>
         <script src="../highcharts-6.0.4/code/highcharts.js"></script>
 		<script src="../highcharts-6.0.4/code/modules/exporting.js"></script>
 		<script type="text/javascript" src="script.js"></script>
-		<link href="estilo.css" rel="stylesheet" type="text/css" />
+		<!-- <link href="estilo.css" rel="stylesheet" type="text/css" /> -->
         
         <meta charset="utf-8">
         <title>Relat&oacute;rio de enquete</title>
