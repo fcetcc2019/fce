@@ -25,9 +25,9 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	$query = mysqli_query($db_alpha, $sql);
 
 	// Todas as respostas
-	$resultado = mysqli_fetch_all($query, MYSQLI_FETCH_ASSOC);
+	//$resultado = mysqli_fetch_all($query, MYSQLI_FETCH_ASSOC);
 
-	die(var_dump($resultado));
+	die(var_dump($query));
 
 	// id + 20 caracteres da pergunta, com espaços trocados por underscore
 	$nomeDoArquivo = $_GET["id"]."_".str_replace(" ", "_", substr($resultado[0]["pergunta"], 0, 20));
