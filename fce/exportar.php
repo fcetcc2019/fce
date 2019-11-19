@@ -27,7 +27,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	echo '<pre>';
 
 	//Todas as respostas
-	var_dump(mysqli_fetch_all($query));
+	var_dump(mysqli_fetch_all($query, MYSQLI_ASSOC));
 
 	/* while($resultado = mysqli_fetch_assoc($query))
 		var_dump($resultado); */
