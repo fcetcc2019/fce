@@ -27,7 +27,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	// Todas as respostas
 	//$resultado = mysqli_fetch_all($query, MYSQLI_FETCH_ASSOC);
 
-	while($resultado = mysqli_fetch_assoc)
+	while($resultado = mysqli_fetch_assoc($query))
 		var_dump($resultado);
 
 	die();
