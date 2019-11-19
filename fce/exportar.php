@@ -80,7 +80,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 			
 			$contentTypeHeader = "application/vnd.ms-excel";
 
-			$extensao = ".xslx";
+			$extensao = ".xlsx";
 
 			$conteudo = '<table><tr><th>'.implode("</th><th>", array_keys($resultado[0])).'</th></tr>';
 
