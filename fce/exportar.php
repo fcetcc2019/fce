@@ -32,7 +32,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 	/* while($resultado = mysqli_fetch_assoc($query))
 		var_dump($resultado); */
 
-	echo '</pre>'
+	echo '</pre>';
 
 	die();
 
