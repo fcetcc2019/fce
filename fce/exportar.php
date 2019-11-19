@@ -24,11 +24,15 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 			
 	$query = mysqli_query($db_alpha, $sql);
 
-	// Todas as respostas
-	//$resultado = mysqli_fetch_all($query, MYSQLI_FETCH_ASSOC);
+	echo '<pre>';
 
-	while($resultado = mysqli_fetch_assoc($query))
-		var_dump($resultado);
+	//Todas as respostas
+	var_dump(mysqli_fetch_all($query));
+
+	/* while($resultado = mysqli_fetch_assoc($query))
+		var_dump($resultado); */
+
+	echo '</pre>'
 
 	die();
 
