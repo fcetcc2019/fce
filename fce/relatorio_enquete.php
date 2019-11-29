@@ -234,7 +234,6 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 								<a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">Exportar <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="exportar.php?id=<?= $id_enquete; ?>&formato=csv" target="_blank">CSV</a></li>
-									<li><a href="exportar.php?id=<?= $id_enquete; ?>&formato=excel" target="_blank">Excel</a></li>
 									<li><a href="exportar.php?id=<?= $id_enquete; ?>&formato=json" target="_blank">JSON</a></li>
 								</ul>
 							</div>
