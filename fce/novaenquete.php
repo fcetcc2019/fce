@@ -149,7 +149,7 @@
                                     $sql = "SELECT IdUO, Nome FROM INF_unidades WHERE AtivoSite = 1 ORDER BY Nome";
                                     $query = mysqli_query($db_alpha, $sql);
                                     while($res = mysqli_fetch_assoc($query)) {
-                                        echo '<option value="'.$res['IdUO'].'">'.$res['Nome'].'</option>';
+                                        echo '<option value="'.$res['IdUO'].'">'.utf8_encode($res['Nome']).'</option>';
                                     }
                                     ?>
                                 </select>
