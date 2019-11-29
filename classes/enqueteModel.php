@@ -108,16 +108,16 @@ SELECT COUNT(*) total FROM CAD_enquete) AS total_geral");
 
 		if(!empty($post['resposta'])) {
 			//$consulta = $this->conexao->query("INSERT INTO portalsenacrs.cad_enquete_respostacliente(id_resposta, data, ddd, telefone, dddcelular, celular, email, nome, cidade, escolaridade) VALUES(".$post['resposta'].", NOW(), '".$post['ddd']."', '".$post['telefone']."', '', '', '".$post['email']."', '".$post['nome']."', '', '')");
-			$consulta = $this->conexao->query("INSERT INTO portalsenacrs.cad_enquete_respostacliente(id_resposta, data, ddd, telefone, dddcelular, celular, email, nome, cidade, escolaridade) VALUES(".utf8_decode($post['resposta']).", NOW(), '".utf8_decode($post['ddd'])."', '".utf8_decode($post['telefone'])."', '', '', '".utf8_decode($post['email'])."', '".utf8_decode($post['nome'])."', '', '')");
+			$consulta = $this->conexao->query("INSERT INTO cad_enquete_respostacliente(id_resposta, data, ddd, telefone, dddcelular, celular, email, nome, cidade, escolaridade) VALUES(".utf8_decode($post['resposta']).", NOW(), '".utf8_decode($post['ddd'])."', '".utf8_decode($post['telefone'])."', '', '', '".utf8_decode($post['email'])."', '".utf8_decode($post['nome'])."', '', '')");
 
 			if(!empty($post['outros'])) {
 
 				if($consulta) {
-					$ultimoId = $this->conexao->query("SELECT id as id FROM portalsenacrs.cad_enquete_respostacliente ORDER BY id DESC LIMIT 1");
+					$ultimoId = $this->conexao->query("SELECT id as id FROM cad_enquete_respostacliente ORDER BY id DESC LIMIT 1");
 					$consultaOutros = 2;
 					if($resultado = mysqli_fetch_assoc($ultimoId)) {
 						//return $resultado;
-						$consultaOutros = $this->conexao->query("INSERT INTO portalsenacrs.cad_enquete_respostacliente_outros(id_resposta, id_respostacliente, valor) VALUES(".utf8_decode($post['resposta']).", ".utf8_decode($resultado['id']).", '".utf8_decode($post['outros'])."')");
+						$consultaOutros = $this->conexao->query("INSERT INTO cad_enquete_respostacliente_outros(id_resposta, id_respostacliente, valor) VALUES(".utf8_decode($post['resposta']).", ".utf8_decode($resultado['id']).", '".utf8_decode($post['outros'])."')");
 					}
 
 					return $consultaOutros;
