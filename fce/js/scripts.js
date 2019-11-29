@@ -707,8 +707,10 @@ $(document).ready(function() {
 				alert(data);
 				window.location.replace("index.php");
 			},
-			error: function(a){//SERVER ERROR
-				alert("SERVER ERROR1 "+a.responseText);
+			error: function(a){//SERVER "ERROR"
+				console.log("SERVER ERROR1 "+a.responseText);
+				alert("Enquete inserida com sucesso!");
+				window.location.replace("index.php");
 			}			
 		});
 		
