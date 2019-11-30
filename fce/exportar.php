@@ -4,7 +4,6 @@
 
 MIME Types: https://www.iana.org/assignments/media-types/media-types.xhtml#application
 * csv - text/csv
-* excel - application/vnd.ms-excel
 * json - application/json
 
 */
@@ -73,22 +72,6 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 				$conteudo .= implode(",", $resposta)."\n";
 
 			}
-
-			break;
-
-		case 'excel':
-			
-			$contentTypeHeader = "application/vnd.ms-excel";
-
-			$extensao = ".xlsx";
-
-			$conteudo = '<table><tr><th>'.implode("</th><th>", array_keys($resultado[0])).'</th></tr>';
-
-			foreach ($resultado as $resposta) {
-				$conteudo .= '<tr><td>'.implode("</td><td>", $resposta).'</td></tr>';
-			}
-
-			$conteudo .= '</table>';
 
 			break;
 
