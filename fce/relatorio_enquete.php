@@ -1,4 +1,10 @@
 <?php
+
+include("../testeSession.php");
+
+?>
+
+<?php
 //include("../connection_aries.php");
 //include("../connection.php");
 include("../connection_alpha_homologacao.php");

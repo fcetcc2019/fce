@@ -1,5 +1,7 @@
 <?php
 
+include("../testeSession.php");
+
 /*
 
 MIME Types: https://www.iana.org/assignments/media-types/media-types.xhtml#application
