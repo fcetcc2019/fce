@@ -1,12 +1,16 @@
 <?php
 
+session_start();
+
+if( isset($_SESSION["logado"]) ) {
+    header("Location: fce/");
+}
+
 $mensagem = "";
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
 	if($_POST['login'] == 'empresa' && $_POST['senha'] == '123456'){
-
-        session_start();
 
         $_SESSION["usuario"] = $_POST['login'];
 
