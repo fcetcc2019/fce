@@ -97,6 +97,9 @@ include("../testeSession.php");
                     <li id="relatorios" class="aba">
                         <a href="graficos.php">Relatórios</a>
                     </li>
+                    <li id="relatorios" class="aba pull-right">
+                        <a href="../logout.php">Logout</a>
+                    </li>
                 </ul>
             </div>
             

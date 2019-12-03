@@ -54,7 +54,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            box-shadow: 0 3px 7px 0 #ccc;
          }
         </style>
  
