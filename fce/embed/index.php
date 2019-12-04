@@ -89,6 +89,8 @@
 
                     echo '<div class="row-fluid enquete">';
 
+                    $conta = 0;
+
             		for ($i=0; $i < count($retorno); $i++) {
             			//$idenquete = '<div class="row-fluid"><input type="hidden" name="idenquete" id="idenquete" value="'.$retorno[$i]['id_enquete'].'" /></div>';
             			$idenquete = '<input type="hidden" name="idenquete" id="idenquete" value="'.$retorno[$i]['id_enquete'].'" />';
@@ -96,16 +98,23 @@
             			
             			$respostas .= '<div class="span12 respostas">';
             			$respostas .= '<label class="radio">';
-            			$respostas .= '<input type="radio" name="optionsRadios" id="resposta-'.$retorno[$i]['id'].'" value="'.$retorno[$i]['id'].'">';
+            			$respostas .= '<input type="radio" name="optionsRadios" id="resposta-'.$retorno[$i]['id'].'" value="'.$retorno[$i]['id'].'" semcheck>';
             			$respostas .= $retorno[$i]['resposta'];
             			$respostas .= '</label>';
             			$respostas .= '</div>';
+
+                        $conta++;
             		}
 
             		//echo $pergunta.$respostas;
                     echo $pergunta;
                     echo $idenquete;
                     echo '<div class="row-fluid grupo-respostas">';
+
+                    if($conta == 1) {
+                        $respostas = str_replace("semcheck", "checked", $respostas);
+                    }
+
                     echo $respostas;
                     echo '<div class="span12" style="margin-top:25px;"><input type="button" name="enviar" id="enviar" value="Enviar" class="btn btn-default btn-large span6" style="padding-top:7px; padding-bottom:7px;" /></div>';
                     echo '</div>';
